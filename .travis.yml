@@ -16,8 +16,8 @@ after_success:
   - docker tag $REPO $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
   - cd "$TRAVIS_BUILD_DIR"
-  - git clone https://$GITHUB_ACCESS_TOKEN@github.com/micro-business/microbusinesses.github.io.git
-  - cd microbusinesses.github.io
+  - git clone https://$GITHUB_ACCESS_TOKEN@github.com/micro-business/micro-business.github.io.git
+  - cd micro-business.github.io
   - mkdir -p js
   - cp -f ../resources/public/prod/index.html . 
   - cp -f ../resources/public/prod/js/main.js js/
@@ -25,3 +25,4 @@ after_success:
   - git add js/main.js
   - git commit -m "Deploying latest web files"
   - git push
+  - cd ..
