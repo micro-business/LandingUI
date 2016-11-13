@@ -19,8 +19,8 @@ after_success:
   - git clone https://$GITHUB_ACCESS_TOKEN@github.com/micro-business/microbusinesses.github.io.git
   - cd microbusinesses.github.io
   - mkdir -p resources/public/prod/js
-  - cp -y ../resources/public/prod/index.html resources/public/prod/
-  - cp -y ../resources/public/prod/js/main.js resources/public/prod/js/
+  - cp -f ../resources/public/prod/index.html resources/public/prod/
+  - cp -f ../resources/public/prod/js/main.js resources/public/prod/js/
   - git add resources/public/prod/index.html
   - git add resources/public/prod/js/main.js
   - git commit -m "Deploying latest web files"
