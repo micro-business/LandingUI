@@ -6,12 +6,14 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.293"]
-                 [org.omcljs/om "1.0.0-alpha47"]]
-
-  :plugins [[lein-cljsbuild "1.1.4"]
-            [lein-cljfmt "0.5.6"]]
+                 [org.omcljs/om "1.0.0-alpha47"]
+                 [figwheel-sidecar "0.5.0-SNAPSHOT" :scope "test"]]
 
   :profiles {:dev {:source-paths ["src/cljs"]}}
+
+  :plugins [[lein-cljsbuild "1.1.4"]
+            [lein-cljfmt "0.5.6"]
+            [lein-figwheel "0.5.8"]]
 
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src/cljs"]
@@ -32,4 +34,6 @@
                         :compiler {:output-to "resources/public/prod/js/main.js"
                                    :output-dir "resources/public/prod/js"
                                    :optimizations :advanced
-                                   :pretty-print false}}]})
+                                   :pretty-print false}}]}
+
+  :figwheel {:http-server-root "public/dev"})
