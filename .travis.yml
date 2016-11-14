@@ -18,11 +18,13 @@ after_success:
   - cd "$TRAVIS_BUILD_DIR"
   - git clone https://$GITHUB_ACCESS_TOKEN@github.com/micro-business/micro-business.github.io.git
   - cd micro-business.github.io
-  - mkdir -p js
-  - cp -f ../resources/public/prod/index.html . 
-  - cp -f ../resources/public/prod/js/main.js js/
+  - git rm -r js
+  - git rm index.html
+  - mkdir -p js/compiled
+  - cp -f ../resources/public/index.html . 
+  - cp -f ../resources/public/js/compiled/microbusinessweb.js js/compiled/
   - git add index.html
-  - git add js/main.js
+  - git add js/compiled/microbusinessweb.js
   - git commit -m "Deploying latest web files"
   - git push
   - cd ..

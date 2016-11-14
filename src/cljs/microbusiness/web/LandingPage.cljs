@@ -8,9 +8,11 @@
 (defui LandingPage
   Object
   (render [this]
-          (dom/div nil "Micro Business Web")))
+          (dom/div nil "Micro Business")))
 
 (def landingPage (om/factory LandingPage))
 
 (defn ^:export renderLandingPage [elementName]
   (js/ReactDOM.render (landingPage) (gdom/getElement elementName)))
+
+(renderLandingPage  "landingPageArea")
