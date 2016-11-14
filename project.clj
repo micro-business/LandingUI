@@ -16,7 +16,7 @@
 
   :source-paths ["src/cljs"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+  :clean-targets ^{:protect false} ["resources/public/js/compiled" "resources/public/js/test/compiled" "target"]
 
   :cljsbuild {:builds
               [{:id "dev"
