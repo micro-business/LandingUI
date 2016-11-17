@@ -7,10 +7,10 @@ services:
  
 script:
   - lein cljsbuild once test
-  - lein cljsbuild once prod
   - lein deploy
 
 after_success:
+  - lein cljsbuild once prod
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
   - export REPO_NAME_EXTENSION=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo ""; else echo -$TRAVIS_BRANCH ; fi`
   - export REPO=microbusiness/microbusinessweb$REPO_NAME_EXTENSION
