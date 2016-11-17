@@ -1,4 +1,4 @@
-(defproject org.microbusiness/micro-business-microbusinessweb "0.1.0-SNAPSHOT"
+(defproject org.microbusiness/microbusinessweb "0.1.0-SNAPSHOT"
   :description "Micro Businesses Web"
   :url "https://github.com/micro-business/MicroBusinessWeb"
   :license {:name "GPL-3.0"
