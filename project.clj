@@ -1,4 +1,4 @@
-(defproject micro-business-microbusinessweb "0.1.0-SNAPSHOT"
+(defproject org.microbusiness/micro-business-microbusinessweb "0.1.0-SNAPSHOT"
   :description "Micro Businesses Web"
   :url "https://github.com/micro-business/MicroBusinessWeb"
   :license {:name "GPL-3.0"
@@ -108,4 +108,13 @@
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
                    :repl-options {; for nREPL dev you really need to limit output
                                   :init (set! *print-length* 50)
-                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
+                                  :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
+
+  :repositories [["releases" {:url "https://clojars.org/repo"
+                              :username :env/CLOJARS_USERNAME
+                              :password :env/CLOJARS_PASSWORD
+                              :sign-releases false}]
+                 ["snapshots" {:url "https://clojars.org/repo"
+                               :username :env/CLOJARS_USERNAME
+                               :password :env/CLOJARS_PASSWORD
+                               :sign-releases false}]])

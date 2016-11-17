@@ -6,6 +6,7 @@ services:
 script:
   - lein cljsbuild once test
   - lein cljsbuild once prod
+  - lein deploy
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
