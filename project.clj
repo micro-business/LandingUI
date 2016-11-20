@@ -31,7 +31,7 @@
                            ;; Comment this out once it no longer serves you.
                            :open-urls ["http://localhost:3449/index.html"]}
 
-                :compiler {:main micro-business.web.landingpage
+                :compiler {:main micro-business.web.rootview
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/microbusinessweb.js"
                            :output-dir "resources/public/js/compiled/out"
@@ -45,7 +45,7 @@
                {:id "test"
                 :source-paths ["src/cljs" "test/cljs"]
 
-                :compiler {:main micro-business.web.landingpage
+                :compiler {:main micro-business.web.rootview
                            :asset-path "js/test/compiled/out"
                            :output-to "resources/public/js/test/compiled/microbusinessweb.js"
                            :output-dir "resources/public/js/test/compiled/out"
@@ -56,7 +56,7 @@
                {:id "prod"
                 :source-paths ["src/cljs"]
                 :compiler {:output-to "resources/public/js/compiled/microbusinessweb.js"
-                           :main micro-business.web.landingpage
+                           :main micro-business.web.rootview
                            :optimizations :advanced
                            :pretty-print false}}]}
 
