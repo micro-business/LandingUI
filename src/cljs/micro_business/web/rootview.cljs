@@ -5,7 +5,7 @@
    [om.dom :as dom]
    [micro-business.web.state :as state]
    [micro-business.web.reader :as reader]
-   [micro-business.web.navigationbar :as navigationbar]))
+   [micro-business.uicomponents.uikit.navigationbar :as navigationbar]))
 
 (enable-console-print!)
 
