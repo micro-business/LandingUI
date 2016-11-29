@@ -5,7 +5,8 @@
    [om.dom :as dom]
    [micro-business.web.state :as state]
    [micro-business.web.reader :as reader]
-   [micro-business.uicomponents.uikit.navigationbar :as navigationbar]))
+   [micro-business.web.signedinrootview :as signedinrootview]
+   [micro-business.web.signedoutrootview :as signedoutrootview]))
 
 (enable-console-print!)
 
@@ -14,20 +15,29 @@
 (defui RootView
   static om/IQuery
   (query [this]
-         (let [navbarSubquery (om/get-query navigationbar/Navbar)]
-           `[{:app/navigationContext ~navbarSubquery}]))
+         (let [signedInSubquery (om/get-query signedinrootview/SignedInRootView)
+               signedOutSubquery (om/get-query signedoutrootview/SignedOutRootView)]
+         `[:current-state :root-view {~signedInSubquery ~signedOutSubquery}]))
+
   Object
   (render [this]
-          (let [{:keys [app/navigationContext]} (om/props this)]
-            (apply dom/div getRootViewStyle [(navigationbar/navbar navigationContext)]))))
+          (let [{:keys [current-state root-view]} (om/props this)]
+            (dom/div getRootViewStyle
+                     (case current-state
+                       :signedIn (signedinrootview/signedInRootView (root-view current-state))
+                       :signedOut (signedoutrootview/signedOutRootView (root-view current-state)))))))
 
-(def reconciler
+(defn- rootViewReconciler [current-state]
   (om/reconciler
-   {:state state/applicationGlobalState
+   {:state (assoc state/applicationGlobalState :current-state current-state)
     :parser (om/parser {:read reader/read})}))
 
-(defn ^:export renderRootView [elementName]
-  (om/add-root! reconciler
+(defn ^:export renderRootViewInSignedInState [elementName]
+  (om/add-root! (rootViewReconciler :signedIn)
                 RootView (gdom/getElement elementName)))
 
-(renderRootView  "rootView")
+(defn ^:export renderRootViewInSignedOutState [elementName]
+  (om/add-root! (rootViewReconciler :signedOut)
+                RootView (gdom/getElement elementName)))
+
+(renderRootViewInSignedOutState "rootView")
