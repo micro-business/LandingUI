@@ -18,7 +18,7 @@
   (query [this]
          (let [signedInSubquery (om/get-query signedinrootview/SignedInRootView)
                signedOutSubquery (om/get-query signedoutrootview/SignedOutRootView)]
-           `[:current-state :root-view {~signedInSubquery ~signedOutSubquery}]))
+           `[:current-state :root-view {:signedIn ~signedInSubquery :signedOut ~signedOutSubquery}]))
 
   Object
   (render [this]

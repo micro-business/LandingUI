@@ -7,10 +7,10 @@
 (defmethod mutate 'signin/clicked
   [{:keys [state]} _ {:keys [name]}]
   {:action
-   (fn [] (swap! state assoc-in [:current-state] :signedOut))})
+   (fn [] (swap! state assoc-in [:current-state] :signedIn))})
 
 (defmethod mutate 'signout/clicked
   [{:keys [state]} _ {:keys [name]}]
   {:action
-   (fn [] (swap! state assoc-in [:current-state] :signedIn))})
+   (fn [] (swap! state assoc-in [:current-state] :signedOut))})
 
