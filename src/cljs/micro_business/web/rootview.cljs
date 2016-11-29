@@ -5,6 +5,7 @@
    [om.dom :as dom]
    [micro-business.web.state :as state]
    [micro-business.web.reader :as reader]
+   [micro-business.web.mutate :as mutate]
    [micro-business.web.signedinrootview :as signedinrootview]
    [micro-business.web.signedoutrootview :as signedoutrootview]))
 
@@ -17,7 +18,7 @@
   (query [this]
          (let [signedInSubquery (om/get-query signedinrootview/SignedInRootView)
                signedOutSubquery (om/get-query signedoutrootview/SignedOutRootView)]
-         `[:current-state :root-view {~signedInSubquery ~signedOutSubquery}]))
+           `[:current-state :root-view {~signedInSubquery ~signedOutSubquery}]))
 
   Object
   (render [this]
@@ -25,19 +26,16 @@
             (dom/div getRootViewStyle
                      (case current-state
                        :signedIn (signedinrootview/signedInRootView (root-view current-state))
-                       :signedOut (signedoutrootview/signedOutRootView (root-view current-state)))))))
+                       :signedOut (signedoutrootview/signedOutRootView (root-view current-state))
+                       (signedoutrootview/signedOutRootView (root-view :signedOut)))))))
 
-(defn- rootViewReconciler [current-state]
+(def rootViewReconciler
   (om/reconciler
-   {:state (assoc state/applicationGlobalState :current-state current-state)
-    :parser (om/parser {:read reader/read})}))
+   {:state state/applicationGlobalState
+    :parser (om/parser {:read reader/read :mutate mutate/mutate})}))
 
-(defn ^:export renderRootViewInSignedInState [elementName]
-  (om/add-root! (rootViewReconciler :signedIn)
+(defn ^:export renderRootView [elementName]
+  (om/add-root! rootViewReconciler
                 RootView (gdom/getElement elementName)))
 
-(defn ^:export renderRootViewInSignedOutState [elementName]
-  (om/add-root! (rootViewReconciler :signedOut)
-                RootView (gdom/getElement elementName)))
-
-(renderRootViewInSignedOutState "rootView")
+(renderRootView "rootView")
