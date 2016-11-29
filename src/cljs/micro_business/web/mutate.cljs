@@ -5,7 +5,7 @@
 (defmulti mutate om/dispatch)
 
 (defmethod mutate 'signin/clicked
-  [{:keys [state]} _ {:keys [name]}]
+  [{:keys [state]} x {:keys [name]}]
   {:action
    (fn [] (swap! state assoc-in [:current-state] :signedIn))})
 
