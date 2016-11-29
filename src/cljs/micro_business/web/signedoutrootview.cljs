@@ -12,7 +12,7 @@
   static om/IQuery
   (query [this]
          (let [navbarSubquery (om/get-query navigationbar/Navbar)]
-           `[:navigationBars ~navbarSubquery]))
+           `[{:navigationBars ~navbarSubquery}]))
   Object
   (render [this]
           (let [{:keys [navigationBars]} (om/props this)

@@ -13,4 +13,3 @@
   [{:keys [state]} _ {:keys [name]}]
   {:action
    (fn [] (swap! state assoc-in [:current-state] :signedOut))})
-
