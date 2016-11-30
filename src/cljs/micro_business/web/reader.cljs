@@ -22,3 +22,10 @@
         root-view (st :root-view)
         navigationBars (get-in root-view [key])]
     {:value navigationBars}))
+
+(defmethod read :signedOut
+  [{:keys [state] :as env} key params]
+  (let [st @state
+        root-view (st :root-view)
+        navigationBars (get-in root-view [key])]
+    {:value navigationBars}))
