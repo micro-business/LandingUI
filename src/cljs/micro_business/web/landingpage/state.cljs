@@ -1,7 +1,6 @@
 (ns micro-business.web.landingpage.state)
 
-(def ^:private navigationBar {:id "topNavigationBar"
-                              :brand "Micro Business"
+(def ^:private navigationBar {:brand "Micro Business"
                               :rightToLeftAlignment false})
 
 (def ^:private signedInNavigationItems {:navigationItems
@@ -13,8 +12,8 @@
 (def state
   {:signedInLandingPage
    {:id :signedInLandingPage
-    :navigationBars [(merge navigationBar signedInNavigationItems)]}
+    :navigationBars [(merge {:id "topNavigationBarSignedIn"} navigationBar signedInNavigationItems)]}
 
    :signedOutLandingPage
    {:id :signedOutLandingPage
-    :navigationBars [(merge navigationBar signedOutNavigationItems)]}})
+    :navigationBars [(merge {:id "topNavigationBarSignedOut"} navigationBar signedOutNavigationItems)]}})
