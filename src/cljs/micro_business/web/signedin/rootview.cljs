@@ -1,4 +1,4 @@
-(ns micro-business.web.signedinrootview
+(ns micro-business.web.signedin.rootview
   (:require
    [om.next :as om :refer-macros [defui]]
    [om.dom :as dom]

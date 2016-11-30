@@ -6,12 +6,10 @@
    [micro-business.web.state :as state]
    [micro-business.web.reader :as reader]
    [micro-business.web.mutate :as mutate]
-   [micro-business.web.signedinrootview :as signedinrootview]
-   [micro-business.web.signedoutrootview :as signedoutrootview]))
+   [micro-business.web.signedin.rootview :as signedinrootview]
+   [micro-business.web.signedout.rootview :as signedoutrootview]))
 
 (enable-console-print!)
-
-(def getRootViewStyle #js {:className "uk-container uk-container-center uk-margin-top"})
 
 (defui RootView
   static om/IQuery
@@ -23,15 +21,14 @@
   Object
   (render [this]
           (let [{:keys [current-state root-view]} (om/props this)]
-            (dom/div getRootViewStyle
-                     (case current-state
-                       :signedIn (signedinrootview/signedInRootView (root-view current-state))
-                       :signedOut (signedoutrootview/signedOutRootView (root-view current-state))
-                       (signedoutrootview/signedOutRootView (root-view :signedOut)))))))
+            (case current-state
+              :signedIn (signedinrootview/signedInRootView (root-view current-state))
+              :signedOut (signedoutrootview/signedOutRootView (root-view current-state))
+              (signedoutrootview/signedOutRootView (root-view :signedOut))))))
 
 (def rootViewReconciler
   (om/reconciler
-   {:state state/applicationGlobalState
+   {:state state/state
     :parser (om/parser {:read reader/read :mutate mutate/mutate})}))
 
 (defn ^:export renderRootView [elementName]
