@@ -16,14 +16,14 @@
         root-view (st key)]
     {:value root-view}))
 
-(defmethod read :signedIn
+(defmethod read :signedInLandingPage
   [{:keys [state] :as env} key params]
   (let [st @state
         root-view (st :root-view)
         navigationBars (get-in root-view [key])]
     {:value navigationBars}))
 
-(defmethod read :signedOut
+(defmethod read :signedOutLandingPage
   [{:keys [state] :as env} key params]
   (let [st @state
         root-view (st :root-view)
