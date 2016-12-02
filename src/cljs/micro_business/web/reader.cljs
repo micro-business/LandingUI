@@ -1,6 +1,6 @@
 (ns micro-business.web.reader
   (:require
-   [om.next :as om :refer-macros [defui]]))
+   [om.next :as om]))
 
 (defmulti read om/dispatch)
 
