@@ -13,16 +13,16 @@
 (defui RootView
   static om/IQuery
   (query [this]
-         (let [landingPageSubquery (om/get-query landingpagerootview/LandingPageRootView)]
-           `[:current-state :root-view {:signedInLandingPage ~landingPageSubquery :signedOutLandingPage ~landingPageSubquery}]))
+         (let [landingPageSubQuery (om/get-query landingpagerootview/LandingPageRootView)]
+           `[:current-state {:landing-pages ~landingPageSubQuery}]))
 
   Object
   (render [this]
-          (let [{:keys [current-state root-view]} (om/props this)]
+          (let [{:keys [current-state landing-pages]} (om/props this)]
             (case current-state
-              :signedInLandingPage (landingpagerootview/landingPageRootView (root-view current-state))
-              :signedOutLandingPage (landingpagerootview/landingPageRootView (root-view current-state))
-              (landingpagerootview/landingPageRootView (root-view :signedOutLandingPage))))))
+              :landingPage/signedIn (landingpagerootview/landingPageRootView (first (filter #(= (% :id) :landingPage/signedIn) landing-pages)))
+              :landingPage/signedOut (landingpagerootview/landingPageRootView (first (filter #(= (% :id) :landingPage/signedOut) landing-pages)))
+              (landingpagerootview/landingPageRootView (first (filter #(= (% :id) :landingPage/signedOut) landing-pages)))))))
 
 (def rootViewReconciler
   (om/reconciler

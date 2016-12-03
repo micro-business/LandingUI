@@ -4,16 +4,14 @@
                               :rightToLeftAlignment false})
 
 (def ^:private signedInNavigationItems {:navigationItems
-                                        [{:id "signout" :caption "Sign out" :onClickedQueryExpression `[('signout/clicked) :root-view]}]})
+                                        [{:id 'signout :caption "Sign out" :onClickedQueryExpression `[('signout/clicked) :current-state]}]})
 
 (def ^:private signedOutNavigationItems {:navigationItems
-                                         [{:id "signin" :caption "Sign in" :onClickedQueryExpression `[('signin/clicked) :root-view]}]})
+                                         [{:id 'signin :caption "Sign in" :onClickedQueryExpression `[('signin/clicked) :current-state]}]})
 
 (def state
-  {:signedInLandingPage
-   {:id :signedInLandingPage
-    :navigationBars [(merge {:id "topNavigationBarSignedIn"} navigationBar signedInNavigationItems)]}
+  [{:id :landingPage/signedIn
+    :navigationBars [(merge {:id 'topNavigationBarSignedIn} navigationBar signedInNavigationItems)]}
 
-   :signedOutLandingPage
-   {:id :signedOutLandingPage
-    :navigationBars [(merge {:id "topNavigationBarSignedOut"} navigationBar signedOutNavigationItems)]}})
+   {:id :landingPage/signedOut
+    :navigationBars [(merge {:id 'topNavigationBarSignedOut} navigationBar signedOutNavigationItems)]}])

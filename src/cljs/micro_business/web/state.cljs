@@ -3,5 +3,4 @@
    [micro-business.web.landingpage.state :as landingpage]))
 
 (def state
-  {:root-view
-   landingpage/state})
+  {:landing-pages landingpage/state})
