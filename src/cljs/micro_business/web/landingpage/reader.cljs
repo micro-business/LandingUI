@@ -2,12 +2,9 @@
   (:require
    [micro-business.uicomponents.uikit.navbar.reader :as navbarreader]))
 
-(defn getLandingPages [state landingPagesKey]
-  (let [landingPageIDs (map #(last %) (state landingPagesKey))
-        landingPages (map #(get-in state [:landing-page/by-id %]) landingPageIDs)
-        navItems (state :navItem/by-id)
-        navBars (state :navBar/by-id)
-        updatedNavBars (navbarreader/getNavigationBars state)
+(defn getLandingPages [state]
+  (let [updatedNavBars (navbarreader/getNavigationBars state)
+        landingPages (map #(last %) (state :landing-page/by-id))
         updatedLandingPages (map (fn [landingPage]
                                    (let [navigationBarIDs (map #(last %) (landingPage :navigationBars))
                                          navigationBarsInDetail (map (fn [navigationBarID]

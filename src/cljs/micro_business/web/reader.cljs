@@ -14,4 +14,4 @@
 
 (defmethod read :landing-pages
   [{:keys [state] :as env} key params]
-  {:value (landingpagereader/getLandingPages @state key)})
+  {:value (landingpagereader/getLandingPages @state)})
