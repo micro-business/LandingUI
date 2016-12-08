@@ -1,6 +1,5 @@
 (ns micro-business.web.reader
   (:require
-
    [micro-business.web.landingpage.reader :as landingpagereader]
    [om.next :as om]))
 
