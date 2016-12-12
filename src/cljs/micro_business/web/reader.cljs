@@ -14,3 +14,9 @@
 (defmethod read :landing-pages
   [{:keys [state] :as env} key params]
   {:value (landingpagereader/getLandingPages @state)})
+
+(defmethod read :signin-page
+  [{:keys [state] :as env} key params]
+  (let [st @state
+        signin-page (st key)]
+    {:value signin-page}))

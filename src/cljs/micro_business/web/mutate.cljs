@@ -7,7 +7,7 @@
 (defmethod mutate 'signin/clicked
   [{:keys [state]} x {:keys [name]}]
   {:action
-   (fn [] (swap! state assoc-in [:current-state] :landingPage/signedIn))})
+   (fn [] (swap! state assoc-in [:current-state] :landingPage/require-signin))})
 
 (defmethod mutate 'signout/clicked
   [{:keys [state]} _ {:keys [name]}]
