@@ -7,7 +7,7 @@
    [micro-business.web.reader :as reader]
    [micro-business.web.mutate :as mutate]
    [micro-business.web.landingpage.rootview :as landingpagerootview]
-   [micro-business.singlesignon.signinpage.rootview :as signinpagerootview]))
+   [micro-business.userui.signinpage.rootview :as signinpagerootview]))
 
 (enable-console-print!)
 

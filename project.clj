@@ -10,7 +10,7 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [org.omcljs/om "1.0.0-alpha47"]
                  [org.microbusiness/uicomponents "0.1.0-SNAPSHOT"]
-                 [org.microbusiness/singlesignonui "0.1.0-SNAPSHOT"]]
+                 [org.microbusiness/useruiservice "0.1.0-SNAPSHOT"]]
 
   :plugins [[lein-figwheel "0.5.8"]
             [lein-cljfmt "0.5.6"]
